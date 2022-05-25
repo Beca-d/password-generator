@@ -24,38 +24,38 @@
             aria-label="Generated Password"
           ></textarea>
         </div>
-        <form class="passwordInput">
+        <form class="passwordInput" id="passwordGeneratoreInput">
           <label for="">Password Length</label>
           <div class="password-character-input">
-            <input type="range" min="8" max="128" id="passLengthRange">
-            <input type="number" class="character-select" min="8" max="128" id="passLengthNumber">
+            <input type="range" min="8" max="128" value="20" id="passLengthRange">
+            <input type="number" min="8" max="128" value="20" id="passLengthNumber">
           </div>
             Include Lowercase characters?
             <div>
-              <input type="radio" name="lowercase" id="lowercase-yes" />                       
+              <input type="radio" name="lowercase" value="lowercaseY" id="lowercase-yes" />                       
               <label for="lowercase-yes">Yes</label>                      
-              <input type="radio" name="lowercase" id="lowercase-no" />
+              <input type="radio" name="lowercase" value="lowercaseN" id="lowercase-no" />
               <label for="lowercase-no">No</label>
             </div>
             Include Uppercase characters?
             <div>
-              <input type="radio" name="uppercase" id="uppercase-yes" />                       
+              <input type="radio" name="uppercase" value="uppercaseY" id="uppercase-yes" />                       
               <label for="uppercase-yes">Yes</label>                      
-              <input type="radio" name="uppercase" id="uppercase-no" />
+              <input type="radio" name="uppercase" value="uppercaseN" id="uppercase-no" />
               <label for="uppercase-no">No</label>
             </div>
             Include Numbers?
             <div>
-              <input type="radio" name="numbers" id="numbers-yes" />                       
+              <input type="radio" name="numbers" value="numbersY" id="numbers-yes" />                       
               <label for="numbers-yes">Yes</label>                      
-              <input type="radio" name="numbers" id="numbers-no" />
+              <input type="radio" name="numbers" value="numbersN" id="numbers-no" />
               <label for="numbers-no">No</label>
             </div>
             Include Special characters?
             <div>
-              <input type="radio" name="special" id="special-yes" />                       
+              <input type="radio" name="special" value="specialY" id="special-yes" />                       
               <label for="special-yes">Yes</label>                      
-              <input type="radio" name="special" id="special-no" />
+              <input type="radio" name="special" value="specialN" id="special-no" />
               <label for="special-no">No</label>
             </div>
         </form>

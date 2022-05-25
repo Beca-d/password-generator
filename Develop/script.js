@@ -10,24 +10,51 @@
 // ** perhaps using index ranges?
 // show password in window alert 
 
-var passwordLength = function() {
+// Sync Password Character Length Range Slider and Number Input Box
+/*const range=document.querySelector("#passLengthRange");
+const number=document.querySelector("#passLengthNumber")
+range.addEventListener("change",(e)=>{
+  number.value=e.target.value;
+})
+number.addEventListener("input",(e)=>{
+  range.value=e.target.value;
+})*/
 
-  var passLength = window.prompt("How long is your password? (enter a number between 8 and 128)");
-  if (passLength < 8 || passLength > 128) {
-    window.alert("You choose an invalid password length! Please try again.");
-    return passwordLength();
-  }
+const passLengthRange = document.getElementById('passLengthRange')
+const passLengthNumber = document.getElementById('passLengthNumber')
+
+passLengthNumber.addEventListener("input", syncPassLength)
+passLengthRange.addEventListener("input", syncPassLength)
+
+function syncPassLength(e) {
+  const value=e.target.value
+  passLengthRange.value = value
+  passLengthNumber.value = value
 }
 
-var passwordCriteria = function () {
+//Variables from character codes to use in password
 
-  var useUppCase = window.confirm("Will your password contain UPPERCASE letters?");
-  var useLowCase = window.confirm("Will your password contain lowercase letters?");
-  var useNum = window.confirm("Will your password contain numbers?");
-  var useSpecial = window.confirm("Will your password contain special characters?");
+var lowercaseChar = arrayCharCodes(97, 122)
+var uppercaseChar = arrayCharCodes(65, 90)
+var numberChar = arrayCharCodes(48, 57)
+var specialChar = arrayCharCodes(33, 47).concat(
+  arrayCharCodes(58, 64)
+).concat(
+  arrayCharCodes(91, 96)
+).concat(
+  arrayCharCodes(123, 126)
+)
 
-}
+/*const includeLowercase = 
 
+
+function generatePassword()
+
+var passwordForm = document.querySelector("passwordGeneratorInput")
+
+passwordForm.addEventListener('submit', e=>) {
+  e.preventDefault()
+}*/
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
