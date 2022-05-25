@@ -20,6 +20,7 @@ const uppercaseIncluded = document.querySelector("#uppercase-yes")
 const numbersIncluded = document.querySelector("#numbers-yes")
 const specialCharactersIncluded = document.querySelector("#special-yes")
 const passForm = document.querySelector("#passwordGeneratorInput")
+const password = document.querySelector("#password")
 
 //Variables from character codes to use in password
 const lowercaseChar = arrayCharCodes(97, 122)
@@ -36,18 +37,28 @@ const specialChar = arrayCharCodes(33, 47).concat(
 passLengthNumber.addEventListener("input", syncPassLength)
 passLengthRange.addEventListener("input", syncPassLength)
 
-passForm.addEventListener('submit', e=> {
-  e.preventDefault()
+function writePassword() {
+  var password = createPassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+}
+
+var generateBtn = document.querySelector("#generate");
+
+generateBtn.addEventListener("click", writePassword); {
   const passwordLength = passLengthNumber.value
   const yesLowercase = lowercaseIncluded.checked
   const yesUppercase = uppercaseIncluded.checked
   const yesNumbers = numbersIncluded.checked
   const yesSpecialChar = specialCharactersIncluded.checked
-  const password = createPassword(passwordLength, yesLowercase, yesUppercase, yesNumbers, yesSpecialChar)
-})
+  const newPassword = createPassword(passwordLength, yesLowercase, yesUppercase, yesNumbers, yesSpecialChar)
+  password.innerText = newPassword
+}
 
 function checkSelection(){
-  
+
 }
 
 function createPassword(passwordLength, yesLowercase, yesUppercase, yesNumbers, yesSpecialChar) {
@@ -57,7 +68,13 @@ function createPassword(passwordLength, yesLowercase, yesUppercase, yesNumbers, 
   if (yesNumbers) characters = characters.concat(numberChar)
   if (yesSpecialChar) characters = characters.concat(specialChar)
 
-  for (let i = 0; i < passwordLength,)
+  const passwordCharacters = []
+  for (let i = 0; i < passwordLength; i++) {
+    const characterCode = characters [Math.floor(Math.random() * characters.length)]
+    passwordCharacters.push(characterCode)
+    passwordCharacters.push(String.fromCharCode(characterCode))
+  }
+  return passwordCharacters.join('')
 }
 
 function arrayCharCodes(low, high) {
@@ -74,36 +91,5 @@ function syncPassLength(e) {
   passLengthNumber.value = value
 }
 
-/*// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-// copied code
-
-/*function generatePassword() {
-  var length = 8,
-      charset = "abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ123456789",
-      retVal = "";
-  for (var i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-  }
-  return retVal;
-}
-
-var i = 0;
-while(i<20)
-{
-$('#pwcontainer').html( $('#pwcontainer').html()+'<br>'+generatePassword() );
-i++;
-}*/
+/*passForm.addEventListener("click" e=> {
+  e.preventDefault()*/
