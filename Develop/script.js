@@ -11,33 +11,21 @@
 // show password in window alert 
 
 // Sync Password Character Length Range Slider and Number Input Box
-/*const range=document.querySelector("#passLengthRange");
-const number=document.querySelector("#passLengthNumber")
-range.addEventListener("change",(e)=>{
-  number.value=e.target.value;
-})
-number.addEventListener("input",(e)=>{
-  range.value=e.target.value;
-})*/
 
-const passLengthRange = document.getElementById('passLengthRange')
-const passLengthNumber = document.getElementById('passLengthNumber')
-
-passLengthNumber.addEventListener("input", syncPassLength)
-passLengthRange.addEventListener("input", syncPassLength)
-
-function syncPassLength(e) {
-  const value=e.target.value
-  passLengthRange.value = value
-  passLengthNumber.value = value
-}
+//Setting 
+const passLengthRange = document.querySelector("#passLengthRange")
+const passLengthNumber = document.querySelector("#passLengthNumber")
+const lowercaseIncluded = document.querySelector("#lowercase-yes")
+const uppercaseIncluded = document.querySelector("#uppercase-yes")
+const numbersIncluded = document.querySelector("#numbers-yes")
+const specialCharactersIncluded = document.querySelector("#special-yes")
+const passForm = document.querySelector("#passwordGeneratorInput")
 
 //Variables from character codes to use in password
-
-var lowercaseChar = arrayCharCodes(97, 122)
-var uppercaseChar = arrayCharCodes(65, 90)
-var numberChar = arrayCharCodes(48, 57)
-var specialChar = arrayCharCodes(33, 47).concat(
+const lowercaseChar = arrayCharCodes(97, 122)
+const uppercaseChar = arrayCharCodes(65, 90)
+const numberChar = arrayCharCodes(48, 57)
+const specialChar = arrayCharCodes(33, 47).concat(
   arrayCharCodes(58, 64)
 ).concat(
   arrayCharCodes(91, 96)
@@ -45,18 +33,48 @@ var specialChar = arrayCharCodes(33, 47).concat(
   arrayCharCodes(123, 126)
 )
 
-/*const includeLowercase = 
+passLengthNumber.addEventListener("input", syncPassLength)
+passLengthRange.addEventListener("input", syncPassLength)
 
-
-function generatePassword()
-
-var passwordForm = document.querySelector("passwordGeneratorInput")
-
-passwordForm.addEventListener('submit', e=>) {
+passForm.addEventListener('submit', e=> {
   e.preventDefault()
-}*/
+  const passwordLength = passLengthNumber.value
+  const yesLowercase = lowercaseIncluded.checked
+  const yesUppercase = uppercaseIncluded.checked
+  const yesNumbers = numbersIncluded.checked
+  const yesSpecialChar = specialCharactersIncluded.checked
+  const password = createPassword(passwordLength, yesLowercase, yesUppercase, yesNumbers, yesSpecialChar)
+})
 
-// Get references to the #generate element
+function checkSelection(){
+  
+}
+
+function createPassword(passwordLength, yesLowercase, yesUppercase, yesNumbers, yesSpecialChar) {
+  let characters = ""
+  if (yesLowercase) characters = characters.concat(lowercaseChar)
+  if (yesUppercase) characters = characters.concat(uppercaseChar)
+  if (yesNumbers) characters = characters.concat(numberChar)
+  if (yesSpecialChar) characters = characters.concat(specialChar)
+
+  for (let i = 0; i < passwordLength,)
+}
+
+function arrayCharCodes(low, high) {
+  const array = []
+  for (let i = low; i <= high; i++) {
+    array.push(i)
+  }
+  return array
+}
+
+function syncPassLength(e) {
+  const value=e.target.value
+  passLengthRange.value = value
+  passLengthNumber.value = value
+}
+
+/*// Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
