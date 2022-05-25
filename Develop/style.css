@@ -42,6 +42,10 @@ header {
   padding: 30px 40px;
 }
 
+.card-header {
+  text-align: center;
+}
+
 .card-header::after {
   content: " ";
   display: block;
@@ -70,6 +74,24 @@ header {
   content: " ";
   display: block;
   clear: both;
+}
+
+.passwordInput {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-weight: bold;
+  font-size: 20px;
+  row-gap: 1rem;
+}
+
+.password-character-input {
+  display: flex;
+  align-items: center;
+}
+
+.character-select {
+  width: 3.25rem;
+  font-size: 1rem;
 }
 
 .btn {
@@ -118,11 +140,26 @@ button[disabled] {
   overflow: hidden;
 }
 
-@media (max-width: 690px) {
+@media screen and (max-width: 690px) {
   .btn {
     font-size: 1rem;
     margin: 16px 0px 0px 0px;
     padding: 10px 15px;
+  }
+
+  .passwordInput {
+    font-weight: bold;
+    font-size: 1rem;
+    row-gap: 1rem;
+  }
+
+  #passLengthRange {
+    width: 6rem;
+  }
+
+  .character-select {
+    font-size: .9rem;
+    width: 2.5rem;
   }
 
   #password {
@@ -130,8 +167,19 @@ button[disabled] {
   }
 }
 
-@media (max-width: 500px) {
+@media screen and (max-width: 500px) {
+  #passLengthRange {
+    width: 5.5rem;
+  }
+
+  .character-select {
+    font-size: .8rem;
+    width: 2rem;
+  }
+  
   .btn {
     font-size: 0.8rem;
   }
+
+
 }

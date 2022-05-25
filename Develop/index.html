@@ -24,6 +24,41 @@
             aria-label="Generated Password"
           ></textarea>
         </div>
+        <form class="passwordInput">
+          <label for="">Password Length</label>
+          <div class="password-character-input">
+            <input type="range" min="8" max="128" id="passLengthRange">
+            <input type="number" class="character-select" min="8" max="128" id="passLengthNumber">
+          </div>
+            Include Lowercase characters?
+            <div>
+              <input type="radio" name="lowercase" id="lowercase-yes" />                       
+              <label for="lowercase-yes">Yes</label>                      
+              <input type="radio" name="lowercase" id="lowercase-no" />
+              <label for="lowercase-no">No</label>
+            </div>
+            Include Uppercase characters?
+            <div>
+              <input type="radio" name="uppercase" id="uppercase-yes" />                       
+              <label for="uppercase-yes">Yes</label>                      
+              <input type="radio" name="uppercase" id="uppercase-no" />
+              <label for="uppercase-no">No</label>
+            </div>
+            Include Numbers?
+            <div>
+              <input type="radio" name="numbers" id="numbers-yes" />                       
+              <label for="numbers-yes">Yes</label>                      
+              <input type="radio" name="numbers" id="numbers-no" />
+              <label for="numbers-no">No</label>
+            </div>
+            Include Special characters?
+            <div>
+              <input type="radio" name="special" id="special-yes" />                       
+              <label for="special-yes">Yes</label>                      
+              <input type="radio" name="special" id="special-no" />
+              <label for="special-no">No</label>
+            </div>
+        </form>
         <div class="card-footer">
           <button id="generate" class="btn">Generate Password</button>
         </div>
