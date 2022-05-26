@@ -172,7 +172,7 @@ button[disabled] {
     width: 5.5rem;
   }
 
-  .character-select {
+  #passLengthNumber {
     font-size: .8rem;
     width: 2rem;
   }
