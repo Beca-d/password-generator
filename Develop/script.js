@@ -1,30 +1,13 @@
 //Setting 
-const passLengthRange = document.querySelector("#passLengthRange")
-const passLengthNumber = document.querySelector("#passLengthNumber")
-const lowercaseIncluded = document.querySelector("#lowercase-yes")
-const uppercaseIncluded = document.querySelector("#uppercase-yes")
-const numbersIncluded = document.querySelector("#numbers-yes")
-const specialCharactersIncluded = document.querySelector("#special-yes")
-const generatePass = document.querySelector("#generate")
-const passForm = document.querySelector("#passwordGeneratorInput")
-const password = document.querySelector("#password")
-
-const RandoCharFunc = {
-  lower: getLowercase,
-  upper: getUppercase,
-  numbers: getNumber,
-  symbol: getSpecialChar
-};
-
-generatePass.addEventListener('click', ()=> {
-  const length = +passLengthRange.value;
-  const lowerOn = lowercaseIncluded.checked;
-  const upperOn = uppercaseIncluded.checked;
-  const numberOn = numbersIncluded.checked;
-  const specialOn = specialCharactersIncluded.checked;
-
-  console.log(length, lowerOn, upperOn, numberOn, specialOn);
-})
+const passLengthRange = document.querySelector("#passLengthRange");
+const passLengthNumber = document.querySelector("#passLengthNumber");
+const lowercaseIncluded = document.querySelector("#lowercase-yes");
+const uppercaseIncluded = document.querySelector("#uppercase-yes");
+const numbersIncluded = document.querySelector("#numbers-yes");
+const specialCharactersIncluded = document.querySelector("#special-yes");
+const generatePass = document.querySelector("#generate");
+const passForm = document.querySelector("#passwordGeneratorInput");
+const password = document.querySelector("#password");
 
 var getLowercase = function() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97)
@@ -39,6 +22,60 @@ var getSpecialChar = function() {
   var specialCharacters = '!@#$%^&*()_-+{}[]<>"=.;:?`~/\|,.';
   return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
 }
+
+const randomFunc = {
+  lower: getLowercase,
+  upper: getUppercase,
+  number: getNumber,
+  special: getSpecialChar
+};
+// Generate Listen Event to button click
+generatePass.addEventListener('click', ()=> {
+  const length = +passLengthRange.value;
+  const lowerOn = lowercaseIncluded.checked;
+  const upperOn = uppercaseIncluded.checked;
+  const numberOn = numbersIncluded.checked;
+  const specialOn = specialCharactersIncluded.checked;
+  
+  password.innerText = generatePassword(
+    length, 
+    lowerOn, 
+    upperOn, 
+    numberOn, 
+    specialOn);
+})
+
+// Generate password function
+
+function generatePassword(length, lowerOn, upperOn, numberOn, specialOn) {
+
+  let generatedPassword = '';
+
+  const typesCount = lowerOn + upperOn + numberOn + specialOn;
+
+  console.log('typesCount: ', typesCount);
+
+  const typesArr = [{ lowerOn }, { upperOn }, { numberOn }, { specialOn }].filter
+    (
+    item => Object.values(item)[0]
+    );
+
+  console.log('typesArr: ', typesArr);
+
+  if (typesCount === 0) {
+    window.alert("No password criteria Selected! Please select at least one type of character to produce a password.")
+  }
+
+  for (let i = 0; i < length; i += typesCount) {
+    typesArr.forEach(type => {
+      const randoName = Object.keys(type)[0];
+      
+
+      generatedPassword += randomFunc[randoName]();
+    });
+  }
+}
+
 
 
 
